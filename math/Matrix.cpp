@@ -5,12 +5,10 @@ template <class T>
 class Matrix {
     private:
         static const int MAX_MN = 109;
-        size_t __rows;
-        size_t __cols;
-        size_t __MOD = 1e9 + 7;
+        T __MOD;
         T __cell[MAX_MN][MAX_MN];
-    public:
-        Matrix(size_t rows, size_t cols) {
+
+        inline void init(size_t rows, size_t cols, T modulus) {
             this->__rows = rows;
             this->__cols = cols;
             for(size_t i=1; i<=rows; i++) {
@@ -18,9 +16,24 @@ class Matrix {
                     __cell[i][j] = 0;
                 }
             }
+            this->__MOD = modulus;
         }
 
-        Matrix(const Matrix &matrix) {
+    public:
+        size_t __rows;
+        size_t __cols;
+        
+        inline Matrix(size_t rows, size_t cols, T modulus) {
+            init(rows, cols, modulus);
+        }
+
+        inline Matrix(size_t rows, size_t cols) {
+            T modulus = numeric_limits<T>::max();
+            init(rows, cols, modulus);
+        }
+
+
+        inline Matrix(const Matrix &matrix) {
             this->__rows = matrix.__rows;
             this->__cols = matrix.__cols;
             for(size_t i=1; i<=this->__rows; i++) {
@@ -30,17 +43,17 @@ class Matrix {
             }
         }
 
-        T& operator()(size_t row, size_t col)
+        inline  T& operator()(size_t row, size_t col)
         {
             return __cell[row][col];
         }
         
-        const T& operator()(size_t row, size_t col) const
+        inline const T& operator()(size_t row, size_t col) const
         {
             return __cell[row][col];
         }
 
-        static Matrix Identity(size_t size) {
+        inline static Matrix Identity(size_t size) {
             Matrix I(size, size);
             for(size_t i=1; i<=size; i++) {
                 I(i,i) = 1;
@@ -48,33 +61,39 @@ class Matrix {
             return I;
         }
 
-        const Matrix operator+(Matrix rhs){
+        inline const Matrix operator+(const Matrix rhs){
             Matrix sum(this->__rows, this->__cols);
             for(size_t i=1; i<=this->__rows; i++) {
                 for(size_t j=1; j<=this->__cols; j++) {
                     sum(i,j) = this->__cell[i][j] + rhs(i,j);
+					if(sum(i,j) >= this->__MOD) {
+						sum(i,j) %= this->__MOD;
+					}
                 }
             }
             return sum;
         }
 
-        const Matrix operator-(Matrix rhs){
+        inline const Matrix operator-(const Matrix rhs){
             Matrix sum(this->__rows, this->__cols);
             for(size_t i=1; i<=this->__rows; i++) {
                 for(size_t j=1; j<=this->__cols; j++) {
                     sum(i,j) = this->__cell[i][j] - rhs(i,j);
+					if(sum(i,j) < 0) {
+						sum(i,j) += this->__MOD;
+					}
                 }
             }
             return sum;
         }
 
-        const Matrix operator*(Matrix rhs){
+        inline const Matrix operator*(const Matrix rhs){
             Matrix sum(this->__rows, rhs.__cols);
             for (size_t i = 1; i <= this->__rows; i++) {
                 for (size_t k = 1; k <= this->__cols; k++) { 
                     for (size_t j = 1; j <= rhs.__cols; j++) {
                         sum(i,j) += this->__cell[i][k] * rhs(k,j);
-                        if(sum(i,j) >= (T)this->__MOD) {
+                        if(sum(i,j) >= this->__MOD) {
                             sum(i,j) %= this->__MOD;
                         }
                     }
@@ -84,7 +103,7 @@ class Matrix {
         }
 
         // pow function
-        const Matrix operator^(int power){
+        inline const Matrix operator^(int power){
             assert(this->__rows == this->__cols);
             if (power == 0)
                 return Matrix::Identity(this->__rows);
@@ -98,17 +117,10 @@ class Matrix {
             return half*half;
         }
 
-        Matrix& operator=(const Matrix& rhs)
-        {
-            Matrix temp(rhs); // Copy-constructor -- RAII
-            swap(*this, *temp);
-            return *this;
-        }
-
-        void show() {
+        inline void show() {
             for(size_t i=1; i<=this->__rows; i++) {
                 for(size_t j=1; j<=this->__cols; j++) {
-                    cout << __cell[i][j] << " ";
+                    cout << this->__cell[i][j] << " ";
                 }
                 cout <<endl;
             }
