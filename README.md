@@ -13,8 +13,8 @@ Author: Nguyen Anh Tuan (gsdt)
 - Create new circle from three points
 - Get center and radius
 
-## Data structure
-### [Fenwick Tree](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/fenwick_tree.cpp)
+## Data structure 
+### [Fenwick Tree](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/fenwick_tree.cpp) (updated: 04:14PM 12/05/2019)
 - `add(pos, value)`: add some value to position 'pos'.
 - `set(pos, value)`: set a value to position 'pos'.
 - `sumToPosition(pos)`: get sum from first position to 'pos'.
