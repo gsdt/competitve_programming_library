@@ -12,3 +12,13 @@ Author: Nguyen Anh Tuan (gsdt)
 #### Circle
 - Create new circle from three points
 - Get center and radius
+
+## Data structure
+### [Fenwick Tree](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/fenwick_tree.cpp)
+- `add(pos, value)`: add some value to position 'pos'.
+- `set(pos, value)`: set a value to position 'pos'.
+- `sumToPosition(pos)`: get sum from first position to 'pos'.
+- `sumOfRage(start_pos, end_pos)`: get sum from 'start_pos' to 'end_pos'.
+- operator `[]`: for get data, *not for set* data.
+- `clear()`: remove all data from tree.
+- `size()`: get number of element in tree.
