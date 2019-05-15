@@ -22,3 +22,4 @@ Author: Nguyen Anh Tuan (gsdt)
 - operator `[]`: for get data, *not for set* data.
 - `clear()`: remove all data from tree.
 - `size()`: get number of element in tree.
+### [Disjoin Set Union](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/dsu.cpp) (updated: 09:22AM 15/05/2019)
