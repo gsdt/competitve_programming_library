@@ -15,14 +15,14 @@ Author: Nguyen Anh Tuan (gsdt)
 
 ## Data structure 
 ### [Fenwick Tree](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/fenwick_tree.cpp) (updated: 04:14PM 12/05/2019)
-- `add(pos, value)`: add some value to position 'pos'.
-- `set(pos, value)`: set a value to position 'pos'.
-- `sumToPosition(pos)`: get sum from first position to 'pos'.
+- `add(pos, value)`: add some value to position **`pos`**.
+- `set(pos, value)`: set a value to position **`pos`**.
+- `sumToPosition(pos)`: get sum from first position to **`pos`**.
 - `sumOfRage(start_pos, end_pos)`: get sum from 'start_pos' to 'end_pos'.
 - operator `[]`: for get data, *not for set* data.
 - `clear()`: remove all data from tree.
 - `size()`: get number of element in tree.
-### [Disjoin Set Union](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/dsu.cpp) (updated: 09:22AM 15/05/2019)
+### [Disjoin Set Union](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/dsu.cpp) (updated: 09:22AM 18/05/2019)
 - `unionSets(a, b)`: join two set has element **`a`** and **`b`**.
 - `findSet(a)`: find root of set **`a`**.
 - `isSameSet(a, b)`: test if set **`a`** and set **`b`** is same.
