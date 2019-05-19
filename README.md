@@ -12,10 +12,11 @@ Author: Nguyen Anh Tuan (gsdt)
 #### Circle
 - Create new circle from three points
 - Get center and radius
-### [Gaussian Elimitation]
+### Gaussian Elimitation
 There are two version:
  - [Double data type](https://github.com/gsdt/competitve_programming_library/blob/master/math/GaussianElimination.cpp)
  - [Integer data type](https://github.com/gsdt/competitve_programming_library/blob/master/math/GaussianElimination.Integer.cpp)
+
 Usage:
  - Contructor: input an matrix to solve.
  - `solve()`: Solve equation
