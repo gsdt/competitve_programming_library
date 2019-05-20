@@ -1,38 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MOD = 1e6+3;
-
-int norm(int a) {
-	while(a >= MOD) a -= MOD;
-	while(a < 0) a += MOD;
-	return a;
-}
-
-int mul(int a, int b) {
-	return int(a * 1ll * b % MOD);
-}
-
-int pow(int a, int k) {
-	int ans = 1;
-	while(k > 0) {
-		if(k & 1)
-			ans = mul(ans, a);
-		a = mul(a, a);
-		k >>= 1;
-	}
-	return ans;
-}
-
-int inv(int a) {
-	return pow(a, MOD - 2);
-}
-
 class GaussianElimination {
     private:
         const int MOD = 1e6+3;
         size_t size;
         vector<vector<int> > a;
+
+        int norm(int a) {
+            while(a >= MOD) a -= MOD;
+            while(a < 0) a += MOD;
+            return a;
+        }
+
+        int mul(int a, int b) {
+            return int(a * 1ll * b % MOD);
+        }
+
+        int pow(int a, int k) {
+            int ans = 1;
+            while(k > 0) {
+                if(k & 1)
+                    ans = mul(ans, a);
+                a = mul(a, a);
+                k >>= 1;
+            }
+            return ans;
+        }
+
+        int inv(int a) {
+            return pow(a, MOD - 2);
+        }
         
     public:
         GaussianElimination(vector<vector<int>> inputMatrix) {

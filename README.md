@@ -27,3 +27,4 @@ Author: Nguyen Anh Tuan (gsdt)
 - `findSet(a)`: find root of set **`a`**.
 - `isSameSet(a, b)`: test if set **`a`** and set **`b`** is same.
 - `getSetSize(a)`: number of element in set **`a`**.
+
