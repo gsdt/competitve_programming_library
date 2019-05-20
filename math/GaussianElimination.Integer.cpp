@@ -72,6 +72,16 @@ class GaussianElimination {
             }
             return result;
         }
+
+        void debug(int width) {
+            for(int i=0; i<size; i++) {
+                for(int j=0; j<size; j++) {
+                    cout << setw(width) << a[i][j] << " ";
+                }
+                cout << " | ";
+                cout << a[i][size] << endl;
+            }
+        }
 };
 
 
