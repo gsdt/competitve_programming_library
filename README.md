@@ -16,6 +16,7 @@ Author: Nguyen Anh Tuan (gsdt)
 There are two version:
  - [Double data type](https://github.com/gsdt/competitve_programming_library/blob/master/math/GaussianElimination.cpp)
  - [Integer data type](https://github.com/gsdt/competitve_programming_library/blob/master/math/GaussianElimination.Integer.cpp)
+ [**Passed Codeforce**](https://codeforces.com/problemset/submission/1155/54401704)
 
 Usage:
  - Contructor: input an matrix to solve.
