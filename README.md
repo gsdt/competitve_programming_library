@@ -37,3 +37,11 @@ Usage:
 - `isSameSet(a, b)`: test if set **`a`** and set **`b`** is same.
 - `getSetSize(a)`: number of element in set **`a`**.
 
+## Graph
+### [Adjacency List Graph](https://github.com/gsdt/competitve_programming_library/blob/master/graph/AdjacencyListGraph.cpp)
+- `AdjacencyListGraph(n)`: create graph with n+1 vertex: from 0 to n.
+- `addDirectedEdge(startVertex, endVertex, weight = 1)`: add an weighted directed edge.
+- `addUndirectedEdge(firstVertex, secondVertex, weight = 1)`: add an weighted undirected edge.
+- `showGraph()`: show current graph.
+- `shortest(startVertex, endVertext)`: using Dijkstra alogrithm find shortest path between to vertex. Return shorted path and direction. This implementation passed [SPOJ](https://www.spoj.com/problems/SHPATH/)
+
