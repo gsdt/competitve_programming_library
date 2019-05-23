@@ -1,4 +1,4 @@
-// accepted https://www.spoj.com/problems/SHPATH/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -46,7 +46,7 @@ class AdjacencyListGraph {
             }
         }
 
-        
+        // accepted https://www.spoj.com/problems/SHPATH/
         pair<int64_t, stack<int> > shortest(size_t startVertex, size_t endVertex) {
             vector<int64_t> d(numberOfVertex + 1, INT64_MAX);
             vector<int> trace(numberOfVertex + 1, -1);
