@@ -22,6 +22,9 @@ Usage:
  - Contructor: input an matrix to solve.
  - `solve()`: Solve equation
 
+### [FFT - multiplying two polynomials](https://github.com/gsdt/competitve_programming_library/blob/master/math/GaussianElimination.cpp)
+
+
 ## Data structure 
 ### [Fenwick Tree](https://github.com/gsdt/competitve_programming_library/blob/master/data_structure/fenwick_tree.cpp) (updated: 04:14PM 12/05/2019)
 - `add(pos, value)`: add some value to position **`pos`**.
