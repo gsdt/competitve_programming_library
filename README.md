@@ -22,7 +22,7 @@ Usage:
  - Contructor: input an matrix to solve.
  - `solve()`: Solve equation
 
-### [FFT - multiplying two polynomials](https://github.com/gsdt/competitve_programming_library/blob/master/math/GaussianElimination.cpp)
+### [FFT - multiplying two polynomials](https://github.com/gsdt/competitve_programming_library/blob/master/math/FFT.cpp)
 
 
 ## Data structure 
