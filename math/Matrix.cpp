@@ -153,5 +153,6 @@ class Matrix {
 
 int main() {
     // this code passed codechef: https://www.codechef.com/submit/complete/23591451
+    // more application: https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 
 }
