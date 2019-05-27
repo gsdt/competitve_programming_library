@@ -6,9 +6,8 @@ class Matrix {
     private:
         static const int MAX_MN = 109;
         T __cell[MAX_MN][MAX_MN];
-        T __MOD;
 
-        inline void init(size_t rows, size_t cols, T modulus) {
+        inline void init(size_t rows, size_t cols) {
             this->rows = rows;
             this->columns = cols;
             for(size_t i=1; i<=rows; i++) {
@@ -16,15 +15,14 @@ class Matrix {
                     __cell[i][j] = 0;
                 }
             }
-            this->__MOD = modulus;
         }
 
     public:
         size_t rows;
         size_t columns;
         
-        inline Matrix(size_t rows, size_t cols, T modulus) {
-            init(rows, cols, modulus);
+        inline Matrix(size_t rows, size_t cols) {
+            init(rows, cols);
         }
 
         inline Matrix(const Matrix &matrix) {
@@ -55,7 +53,6 @@ class Matrix {
             
             rows    = rhs.rows;
             columns    = rhs.columns;
-            __MOD     = rhs.__MOD;
             
             for(size_t i=1; i<=this->rows; i++) {
                 for(size_t j=1; j<=this->columns; j++) {
@@ -67,7 +64,7 @@ class Matrix {
         }
 
         inline const Matrix getCopy() {
-            Matrix result(this->rows, this->columns, this->__MOD);
+            Matrix result(this->rows, this->columns);
             for(size_t i=1; i<=this->rows; i++) {
                 for(size_t j=1; j<=this->columns; j++) {
                     result(i,j) = this->__cell[i][j];
@@ -76,8 +73,8 @@ class Matrix {
             return result;
         }
 
-        inline static Matrix Identity(size_t size, T modulus) {
-            Matrix I(size, size, modulus);
+        inline static Matrix getIdentity(size_t size) {
+            Matrix I(size, size);
             for(size_t i=1; i<=size; i++) {
                 I(i,i) = 1;
             }
@@ -85,12 +82,12 @@ class Matrix {
         }
 
         inline const Matrix operator+(const Matrix rhs){
-            Matrix sum(this->rows, this->columns, this->__MOD);
+            Matrix sum(this->rows, this->columns);
             for(size_t i=1; i<=this->rows; i++) {
                 for(size_t j=1; j<=this->columns; j++) {
                     sum(i,j) = this->__cell[i][j] + rhs(i,j);
-					if(sum(i,j) >= this->__MOD) {
-						sum(i,j) %= this->__MOD;
+					if(sum(i,j) >= MOD) {
+						sum(i,j) %= MOD;
 					}
                 }
             }
@@ -98,12 +95,12 @@ class Matrix {
         }
 
         inline const Matrix operator-(const Matrix rhs){
-            Matrix sum(this->rows, this->columns, this->__MOD);
+            Matrix sum(this->rows, this->columns);
             for(size_t i=1; i<=this->rows; i++) {
                 for(size_t j=1; j<=this->columns; j++) {
                     sum(i,j) = this->__cell[i][j] - rhs(i,j);
 					if(sum(i,j) < 0) {
-						sum(i,j) += this->__MOD;
+						sum(i,j) += MOD;
 					}
                 }
             }
@@ -111,33 +108,36 @@ class Matrix {
         }
 
         inline const Matrix operator*(const Matrix rhs){
-            Matrix sum(this->rows, rhs.columns, this->__MOD);
+            Matrix sum(this->rows, rhs.columns);
             for (size_t i = 1; i <= this->rows; i++) {
                 for (size_t j = 1; j <= this->columns; j++) { 
                     for (size_t k = 1; k <= rhs.columns; k++) {
-                        sum(i,j) += this->__cell[i][k] * rhs(k,j);
+                        sum(i,j) += 1LL*this->__cell[i][k] * rhs(k,j) % MOD;
+                        if(sum(i,j) > MOD) {
+                            sum(i,j) -= MOD;
+                        }
                     }
-                    sum(i,j) %= this->__MOD;
                 }
             }
             return sum;
         }
 
         // pow function
-        inline const Matrix operator^(int power){
+        inline const Matrix operator^(int64_t power){
             assert(this->rows == this->columns);
-            if (power == 0)
-                return Matrix::Identity(this->rows, this->__MOD);
-            if (power == 1)
-                return this->getCopy();
-            if (power % 2)
-            {
-                Matrix m = (*this)^(power - 1);
-                return (*this)*m;
+            Matrix<T> result = Matrix::getIdentity(this->rows);
+            Matrix<T> a = this->getCopy();
+            while(power) {
+                if(power % 2) {
+                    result = result*a;
+                    power --;
+                }
+                else {
+                    a = a*a;
+                    power/=2;
+                }
             }
-
-            Matrix half = (*this)^(power / 2);
-            return half*half;
+            return result;
         }
 
         inline void show() {
