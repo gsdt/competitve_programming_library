@@ -7,10 +7,10 @@ using namespace std;
 template<class T> 
 class SegmenTree {
     private:
-        static const int MAXN = 1e5 + 5;
-        size_t n;
-        T st[MAXN << 2];
-        T lz[MAXN << 2];
+        size_t size;
+        vector<T> st;
+        vector<T> lz;
+
         void pushdown(int p, int L, int R) {
             if (lz[p]) {
                 st[p] += (R - L + 1) * lz[p];
@@ -21,7 +21,7 @@ class SegmenTree {
                 lz[p] = 0;
             }
         }
-        public:
+
         void upd(int p, int l, int r, int L, int R, T val) {
             pushdown(p, L, R);
             if (l > R || r < L) return;
@@ -40,16 +40,18 @@ class SegmenTree {
             if (l <= L && r >= R) return st[p];
             return qry(p << 1, l, r, L, L + R >> 1) + qry(p << 1 | 1, l, r, (L + R >> 1) + 1, R);
         }
-    // public:
-        SegmenTree(size_t size) {
-            n = size;
+    public:
+        SegmenTree(size_t n) {
+            size = n;
+            st.resize(n << 2 + 10);
+            lz.resize(n << 2 + 10);
         }
         T query(int l, int r) {
-            return qry(1, l, r, 0, n-1);
+            return qry(1, l, r, 0, size-1);
         }
 
         void update(int l, int r, T value) {
-            upd(1, l, r, 0, n-1, value);
+            upd(1, l, r, 0, size-1, value);
         }
 };
 
@@ -57,12 +59,17 @@ const int maxn = 1e5 + 5;
 int n;
 int a[maxn];
 
-
-SegmenTree<int> seg(n);
+int sum(int a, int b) {
+    return a + b;
+}
 
 int main() {
     srand(time(NULL));
     n = 1000;
+    
+
+    SegmenTree<int> seg(1000);
+
     for (int it = 0; it < 1000; it++) {
         int l = rand() % n;
         int r = rand() % n;
