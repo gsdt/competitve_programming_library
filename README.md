@@ -3,6 +3,7 @@ Author: Nguyen Anh Tuan (gsdt)
 [MIT License](https://github.com/gsdt/competitve_programming_library/blob/master/LICENSE)
 
 ## Math
+### [Modulo](https://github.com/gsdt/competitve_programming_library/blob/master/math/Modulo.cpp)
 ### [Matrix](https://github.com/gsdt/competitve_programming_library/blob/master/math/Matrix.cpp)
 - Supported: add, subtract, multiply, power 
 - Operator () overloaded, ex: M(1,2) = 12
